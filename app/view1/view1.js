@@ -7,22 +7,6 @@ angular.module('myApp.view1', ['ngRoute', 'ng-token-auth','ipCookie'])
     templateUrl: 'view1/view1.html',
     controller: 'View1Ctrl'
   });
-
-  $authProvider.configure({
-    apiUrl: 'http://localhost:3000/api/v1',
-    tokenValidationPath: '/auth/validate_token',
-    signOutUrl: '/auth/sign_out',
-    confirmationSuccessUrl: window.location.href,
-    emailSignInPath: '/auth/sign_in',
-    storage: 'cookies',
-    cookieOps: {
-      path: "/",
-      expires: 9999,
-      expirationUnit: 'days',
-      secure: false,
-      domain: 'localhost'
-    }
-  });
 }])
 
 .controller('View1Ctrl', ['$scope', '$auth', '$http', '$rootScope', function($scope, $auth, $http, $rootScope) {
@@ -40,7 +24,7 @@ angular.module('myApp.view1', ['ngRoute', 'ng-token-auth','ipCookie'])
   };
 
   $scope.buscaUsuarios = function () {
-    $http.get('http://localhost:3000/api/matriculas').success(function (resp) {
+    $http.get('https://traus-v2.herokuapp.com/api/matriculas').success(function (resp) {
       console.debug(resp);
     }).error(function (resp) {
       console.debug(resp);

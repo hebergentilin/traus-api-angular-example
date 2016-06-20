@@ -14,7 +14,7 @@ config(['$locationProvider', '$routeProvider', '$authProvider', '$httpProvider',
   $httpProvider.defaults.headers.common['Accept'] = 'application/vnd.traus.com.br.v1';
 
   $authProvider.configure({
-    apiUrl: 'http://localhost:3000/api',
+    apiUrl: 'https://traus-v2.herokuapp.com/api',
     tokenValidationPath: '/auth/validate_token',
     signOutUrl: '/auth/sign_out',
     confirmationSuccessUrl: window.location.href,
