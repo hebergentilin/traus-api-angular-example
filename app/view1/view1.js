@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute', 'ng-token-auth','ipCookie'])
+angular.module('myApp.view1', ['ngRoute'])
 
-.config(['$routeProvider', '$authProvider', function($routeProvider, $authProvider) {
+.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
     templateUrl: 'view1/view1.html',
     controller: 'View1Ctrl'
@@ -24,7 +24,26 @@ angular.module('myApp.view1', ['ngRoute', 'ng-token-auth','ipCookie'])
   };
 
   $scope.buscaUsuarios = function () {
-    $http.get('https://traus-v2.herokuapp.com/api/matriculas').success(function (resp) {
+    $http.get(host + '/api/matriculas').success(function (resp) {
+      $scope.usuarios = resp;
+      console.debug(resp);
+    }).error(function (resp) {
+      console.debug(resp);
+    });
+  };
+
+  $scope.buscaUsuario = function() {
+    $http.get(host + '/api/matriculas/23').success(function (resp) {
+      $scope.usuario = resp;
+      console.debug(resp);
+    }).error(function (resp) {
+      console.debug(resp);
+    });
+  };
+
+  $scope.buscaTurmas = function () {
+    $http.get(host + '/api/turmas').success(function (resp) {
+      $scope.turmas = resp;
       console.debug(resp);
     }).error(function (resp) {
       console.debug(resp);
