@@ -14,9 +14,8 @@ angular.module('myApp.view1', ['ngRoute'])
     $auth.submitLogin({
       email: $scope.username,
       password: $scope.password
-    }).then(function (resp) {
-      console.debug("Success!!!");
-      console.debug(resp);
+    }).then(function (usuarioLogado) {
+      $rootScope.usuarioLogado = usuarioLogado;
     }).catch(function(resp) {
       console.debug("ERR!!!");
       console.debug(resp);
@@ -24,30 +23,19 @@ angular.module('myApp.view1', ['ngRoute'])
   };
 
   $scope.buscaUsuarios = function () {
-    $http.get(host + '/api/matriculas').success(function (resp) {
-      $scope.usuarios = resp;
-      console.debug(resp);
-    }).error(function (resp) {
-      console.debug(resp);
-    });
+    sendRequest(host + '/api/matriculas', 'usuarios');
   };
 
   $scope.buscaUsuario = function() {
-    $http.get(host + '/api/matriculas/23').success(function (resp) {
-      $scope.usuario = resp;
-      console.debug(resp);
-    }).error(function (resp) {
-      console.debug(resp);
-    });
+    sendRequest(host + '/api/matriculas/23', 'usuario');
   };
 
   $scope.buscaTurmas = function () {
-    $http.get(host + '/api/turmas').success(function (resp) {
-      $scope.turmas = resp;
-      console.debug(resp);
-    }).error(function (resp) {
-      console.debug(resp);
-    });
+    sendRequest(host + '/api/turmas', 'turmas');
+  };
+
+  $scope.buscaIndicadores = function() {
+    sendRequest(host + '/api/indicadores', 'indicadores');
   };
 
   $rootScope.$on('auth:login-success', function(ev, user) {
@@ -73,6 +61,15 @@ angular.module('myApp.view1', ['ngRoute'])
       console.debug(resp);
     }).catch(function(resp) {
       console.debug("ERR!!!");
+      console.debug(resp);
+    });
+  };
+
+  var sendRequest = function(url, model) {
+    $http.get(url).success(function (resp) {
+      $scope[model] = resp;
+      console.debug(resp);
+    }).error(function (resp) {
       console.debug(resp);
     });
   };

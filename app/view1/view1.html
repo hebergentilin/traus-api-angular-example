@@ -15,36 +15,61 @@
         margin: 20px 0;
     }
 </style>
-<fieldset>
-    <legend>Usuários</legend>
-    <button type="button" ng-click="buscaUsuarios()">Busca Usuários</button>
 
-    <code>{{usuarios}}</code>
-</fieldset>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Usuários
+            <div class="pull-right">
+                <button type="button" class="btn btn-default btn-xs" ng-click="buscaUsuarios()">Busca Usuários</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            {{usuarios}}
+          </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Usuário
+            <div class="pull-right">
+                <button type="button" class="btn btn-default btn-xs" ng-click="buscaUsuario()">Buscar Usuário</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            {{usuario}}
+          </div>
+        </div>
+    </div>
+</div>
 
-<fieldset>
-    <legend>Usuário</legend>
-    <button type="button" ng-click="buscaUsuario()">Buscar Usuário</button>
-
-    <code>{{usuario}}</code>
-</fieldset>
-<fieldset>
-    <legend>Turmas</legend>
-    <button type="button" ng-click="buscaTurmas()">Buscar Turmas</button>
-
-    <code>{{turmas}}</code>
-</fieldset>
-<fieldset>
-    <legend>Login</legend>
-    <input type="text" ng-model="username">
-    <input type="password" ng-model="password">
-    <button type="button" ng-click="doLogin()">Logar</button>
-</fieldset>
-<fieldset>
-    <legend>Sign Out</legend>
-    <button type="button" ng-click="signOut()">Sign Out</button>
-</fieldset>
-<fieldset>
-    <legend>Register</legend>
-    <button type="button" ng-click="register()">Register</button>
-</fieldset>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Turmas
+            <div class="pull-right">
+                <button type="button" class="btn btn-default btn-xs" ng-click="buscaTurmas()">Buscar Turmas</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            {{turmas}}
+          </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Indicadores
+            <div class="pull-right">
+                <button type="button" class="btn btn-default btn-xs" ng-click="buscaIndicadores()">Buscar Indicadores</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            {{indicadores}}
+          </div>
+        </div>
+    </div>
+</div>
