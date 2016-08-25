@@ -22,12 +22,12 @@ angular.module('myApp.view1', ['ngRoute'])
     });
   };
 
-  $scope.buscaUsuarios = function () {
-    sendRequest(host + '/api/matriculas', 'usuarios');
+  $scope.buscaMatriculas = function () {
+    sendRequest(host + '/api/matriculas', 'matriculas');
   };
 
   $scope.buscaUsuario = function() {
-    sendRequest(host + '/api/matriculas/23', 'usuario');
+    sendRequest(host + '/api/matriculas/'+$scope.id, 'matricula');
   };
 
   $scope.buscaTurmas = function () {
@@ -35,7 +35,15 @@ angular.module('myApp.view1', ['ngRoute'])
   };
 
   $scope.buscaIndicadores = function() {
-    sendRequest(host + '/api/indicadores', 'indicadores');
+    $scope.indices = [];
+    sendRequest(host + '/api/indicadores', 'indicadores', function() {
+      _.each($scope.indicadores[0].indices, function(indice) {
+        _.each(indice.sub_indices, function(sub_indice){
+          sub_indice.ancestry = indice.nome;
+          $scope.indices.push(sub_indice);
+        });
+      });
+    });
   };
 
   $rootScope.$on('auth:login-success', function(ev, user) {
@@ -65,10 +73,12 @@ angular.module('myApp.view1', ['ngRoute'])
     });
   };
 
-  var sendRequest = function(url, model) {
+  var sendRequest = function(url, model, callback) {
     $http.get(url).success(function (resp) {
       $scope[model] = resp;
       console.debug(resp);
+      if (!!callback)
+        callback();
     }).error(function (resp) {
       console.debug(resp);
     });

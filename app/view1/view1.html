@@ -15,31 +15,34 @@
         margin: 20px 0;
     }
 </style>
-
+<div class="page-header">
+  <h1>Serviços Disponíveis</h1>
+</div>
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            Usuários
+            Matrículas - <small>/api/matriculas</small>
             <div class="pull-right">
-                <button type="button" class="btn btn-default btn-xs" ng-click="buscaUsuarios()">Busca Usuários</button>
+                <button type="button" class="btn btn-default btn-xs" ng-click="buscaMatriculas()">Busca Matrículas</button>
             </div>
           </div>
           <div class="panel-body">
-            {{usuarios}}
+            {{matriculas}}
           </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            Usuário
+            Matrícula - <small>/api/matriculas/:id</small>
             <div class="pull-right">
-                <button type="button" class="btn btn-default btn-xs" ng-click="buscaUsuario()">Buscar Usuário</button>
+                <input type="text" class="form-control input-sm" placeholder="id" ng-model="id" style="display: inline-block; width: 70px; height:23px" ">
+                <button type="button" class="btn btn-default btn-xs" ng-click="buscaUsuario()">Buscar Matrícula</button>
             </div>
           </div>
           <div class="panel-body">
-            {{usuario}}
+            {{matricula}}
           </div>
         </div>
     </div>
@@ -49,7 +52,7 @@
     <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            Turmas
+            Turma - <small>/api/turmas</small>
             <div class="pull-right">
                 <button type="button" class="btn btn-default btn-xs" ng-click="buscaTurmas()">Buscar Turmas</button>
             </div>
@@ -62,13 +65,32 @@
     <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            Indicadores
+            Indicadores - <small>/api/indicadores</small>
             <div class="pull-right">
                 <button type="button" class="btn btn-default btn-xs" ng-click="buscaIndicadores()">Buscar Indicadores</button>
             </div>
           </div>
           <div class="panel-body">
-            {{indicadores}}
+            <div class="row">
+                <div class="col-md-4">
+                    <select required
+                            name="formaPagamento"
+                            style="padding: 0"
+                            ng-model="indiceSelecionado"
+                            class="form-control input-sm"
+                            ng-options="indice as indice.nome group by indice.ancestry for indice in indices track by indice.id"
+                            class="form-control">
+                        <option value="">-- escolha um valor --</option>
+                    </select>
+                </div>
+                <div class="col-md-8">
+                    <p class="form-control-static">
+                        <label>Índice Selecionado</label>: {{indiceSelecionado.ancestry}} - {{indiceSelecionado.nome}}
+                    </p>
+                </div>
+            </div>
+            <br>
+            <p><small>{{indicadores}}</small></p>
           </div>
         </div>
     </div>
