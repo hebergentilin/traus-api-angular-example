@@ -1,6 +1,6 @@
 'use strict';
 
-var host = "http://localhost:3000";
+var host = "http://traus-v2.herokuapp.com";
 // var host = "http://localhost:3000";
 
 // Declare app level module which depends on views, and components
