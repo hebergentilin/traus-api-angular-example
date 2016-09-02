@@ -10,6 +10,15 @@ angular.module('myApp.view1', ['ngRoute'])
 }])
 
 .controller('View1Ctrl', ['$scope', '$auth', '$http', '$rootScope', function($scope, $auth, $http, $rootScope) {
+  $scope.medicao = {};
+  $scope.salvarMedicao = function() {
+    $http.post(host + '/api/medicoes', $scope.medicao).success(function (medicao) {
+      $scope.medicaoCriada = medicao;
+    }).error(function (resp) {
+      console.debug(resp);
+    });
+  };
+
   $scope.doLogin = function () {
     $auth.submitLogin({
       email: $scope.username,
