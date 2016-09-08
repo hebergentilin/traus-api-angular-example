@@ -122,6 +122,12 @@
                     <span class="help-block">hh:mm:ss.mmm</span>
                 </div>
                 <div class="form-group">
+                    <label for="melhor_valor">
+                        <input type="checkbox" ng-model="medicao.melhor_valor" name="medicao[melhor_valor]" id="melhor_valor">
+                        Melhor Valor?
+                    </label>
+                </div>
+                <div class="form-group">
                     <label for="data">Data Inclusão <small>(opcional)</small></label>
                     <input type="text" class="form-control" ng-model="medicao.data_inclusao" name="medicao[data_inclusao]" id="data" placeholder="Data Inclusão">
                     <span class="help-block">dd/mm/yyyy</span>
@@ -136,5 +142,31 @@
             </form>
           </div>
         </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Versão Serviço - <small>GET /api/:servico/versao</small>
+            <div class="pull-right">
+                <button type="button" class="btn btn-default btn-xs" ng-click="atualizaVersao()">Atualizar</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Serviço</th>
+                        <th>Versão Atual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="versaoServico in versoes track by $index">
+                        <td>{{versaoServico.servico}}</td>
+                        <td>{{versaoServico.versao}}</td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+      </div>
     </div>
 </div>  

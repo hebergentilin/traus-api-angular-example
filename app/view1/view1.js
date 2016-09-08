@@ -19,6 +19,17 @@ angular.module('myApp.view1', ['ngRoute'])
     });
   };
 
+  $scope.atualizaVersao = function() {
+    $scope.versoes = [];
+    _.each(['matriculas', 'indicadores', 'medicoes', 'turmas'], function(servico) {
+      $http.get(host + '/api/'+servico+'/versao', $scope.medicao).success(function (versao) {
+        $scope.versoes.push({servico: servico, versao: versao});
+      }).error(function (resp) {
+        console.debug(resp);
+      });
+    });
+  };
+
   $scope.doLogin = function () {
     $auth.submitLogin({
       email: $scope.username,
