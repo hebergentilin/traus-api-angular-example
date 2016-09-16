@@ -11,8 +11,35 @@ angular.module('myApp.view1', ['ngRoute'])
 
 .controller('View1Ctrl', ['$scope', '$auth', '$http', '$rootScope', function($scope, $auth, $http, $rootScope) {
   $scope.medicao = {};
+  $scope.medicaoParaAtualizar = {};
+  $scope.medicoesParaAtualizar = [];
+  $scope.tempos = [{}];
+
+  $scope.addTempo = function() {
+    $scope.tempos.push({});
+  };
+
+  $scope.addMedicao = function() {
+    $scope.medicoesParaAtualizar.push(_.clone($scope.medicaoParaAtualizar));
+  };
+
+  $scope.atualizarMedicoes = function() {
+    $http.put(host + '/api/medicoes', {medicoes: $scope.medicoesParaAtualizar}).success(function (resp) {
+      $scope.retornoAtualizarMedicao = resp;
+    }).error(function (resp) {
+      console.debug(resp);
+    });
+  };
+
   $scope.salvarMedicao = function() {
-    $http.post(host + '/api/medicoes', $scope.medicao).success(function (medicao) {
+    $scope.medicoes = [];
+    _.each($scope.tempos, function(tempo) {
+      var medicao = _.clone($scope.medicao);
+      medicao.tempo = tempo.valor;
+      $scope.medicoes.push(medicao);
+    });
+
+    $http.post(host + '/api/medicoes', {medicoes: $scope.medicoes}).success(function (medicao) {
       $scope.medicaoCriada = medicao;
     }).error(function (resp) {
       console.debug(resp);
