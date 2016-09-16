@@ -1,9 +1,6 @@
 {
   "name": "angular-seed",
   "private": true,
-  "engines": {
-    "node": "v4.4"
-  },
   "version": "0.0.0",
   "description": "A starter project for AngularJS",
   "repository": "https://github.com/angular/angular-seed",
@@ -21,7 +18,7 @@
     "shelljs": "^0.6.0"
   },
   "scripts": {
-    "postinstall": "bower install",
+
 
     "prestart": "npm install",
     "start": "http-server -a localhost -p 8111 -c-1 ./app",
